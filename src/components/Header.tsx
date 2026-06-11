@@ -49,7 +49,7 @@ export default function Header() {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
 
-  // Update progress state from localStorage
+  // Atualiza o estado de progresso a partir do localStorage
   const checkProgress = () => {
     const progress = modules.map(mod => localStorage.getItem(mod.storageKey) === 'true');
     setCompletedModules(progress);
@@ -58,7 +58,7 @@ export default function Header() {
   useEffect(() => {
     checkProgress();
     
-    // Custom event listener for page progress updates
+    // Listener de evento personalizado para atualizações de progresso do curso
     window.addEventListener('progressUpdate', checkProgress);
     window.addEventListener('storage', checkProgress);
     
@@ -68,7 +68,7 @@ export default function Header() {
     };
   }, []);
 
-  // Close overlays when clicking outside
+  // Fecha os popovers flutuantes ao clicar fora do cabeçalho
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
@@ -81,7 +81,7 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Close search on escape
+  // Fecha o modal de busca ao pressionar a tecla Escape
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -92,7 +92,7 @@ export default function Header() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Focus search input when opened
+  // Foca o campo de entrada de busca automaticamente quando aberto
   useEffect(() => {
     if (searchOpen && searchInputRef.current) {
       setTimeout(() => {
@@ -109,7 +109,7 @@ export default function Header() {
       modules.forEach(mod => localStorage.removeItem(mod.storageKey));
       checkProgress();
       setProfileOpen(false);
-      // Notify other pages
+      // Notifica as outras páginas sobre a alteração de progresso
       window.dispatchEvent(new Event('progressUpdate'));
     }
   };
@@ -130,7 +130,7 @@ export default function Header() {
     navigate(path);
     
     if (hash) {
-      // Small timeout to allow page layout to mount/render
+      // Pequeno atraso para permitir a montagem/renderização do layout da página
       setTimeout(() => {
         const element = document.getElementById(hash);
         if (element) {
@@ -142,10 +142,10 @@ export default function Header() {
 
   return (
     <>
-      {/* Floating Header Wrapper */}
+      {/* Wrapper do Cabeçalho Flutuante */}
       <div ref={headerRef} className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-4xl header-container">
         <header className="flex items-center justify-between bg-black/90 backdrop-blur-md px-6 py-2.5 rounded-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] select-none">
-          {/* Logo */}
+          {/* Logotipo */}
           <Link to="/" className="flex items-center gap-2 group">
             <span className="text-lg font-display font-black tracking-tight text-white pl-1">
               UX Academy
@@ -153,9 +153,9 @@ export default function Header() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#7cb6d3] group-hover:scale-150 transition-transform duration-300"></span>
           </Link>
 
-          {/* Navigation Button Dock */}
+          {/* Dock de Botões de Navegação */}
           <div className="button-container relative" style={{ width: 'auto', gap: '8px', padding: '0 4px', height: 'auto', backgroundColor: 'transparent' }}>
-            {/* Button 1: Home */}
+            {/* Botão 1: Início */}
             <button 
               onClick={() => {
                 navigate('/');
@@ -170,7 +170,7 @@ export default function Header() {
               </svg>
             </button>
 
-            {/* Button 2: Search */}
+            {/* Botão 2: Busca */}
             <button 
               onClick={() => {
                 setSearchOpen(true);
@@ -185,7 +185,7 @@ export default function Header() {
               </svg>
             </button>
 
-            {/* Button 3: Profile/Progress */}
+            {/* Botão 3: Perfil / Progresso */}
             <button 
               onClick={() => {
                 setProfileOpen(!profileOpen);
@@ -202,7 +202,7 @@ export default function Header() {
               )}
             </button>
 
-            {/* Button 4: Modules List */}
+            {/* Botão 4: Lista de Módulos */}
             <button 
               onClick={() => {
                 setModulesOpen(!modulesOpen);
@@ -220,7 +220,7 @@ export default function Header() {
           </div>
         </header>
 
-        {/* --- Profile Progress Popover --- */}
+        {/* --- Popover de Progresso de Perfil --- */}
         {profileOpen && (
           <div className="absolute top-16 right-0 bg-[#121111]/95 backdrop-blur-md border border-white/10 text-white rounded-2xl p-5 w-[320px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-50 animate-in fade-in slide-in-from-top-4 duration-200">
             <div className="flex items-center gap-3 border-b border-white/10 pb-4 mb-4">
@@ -233,7 +233,7 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Progress Bar */}
+            {/* Barra de Progresso */}
             <div className="space-y-1.5 mb-6">
               <div className="flex justify-between text-xs font-semibold text-white/80">
                 <span>Progresso Geral</span>
@@ -247,7 +247,7 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Modules Checkbox List */}
+            {/* Lista de Módulos com Checkbox */}
             <div className="space-y-3 mb-6">
               {modules.map((mod, idx) => (
                 <div 
@@ -272,7 +272,7 @@ export default function Header() {
               ))}
             </div>
 
-            {/* Reset progress */}
+            {/* Ação de resetar o progresso */}
             <button 
               onClick={resetProgress}
               className="w-full py-2 bg-red-950/20 hover:bg-red-950/40 border border-red-500/20 text-red-400 rounded-lg text-xs font-bold transition-colors flex items-center justify-center gap-2"
@@ -283,7 +283,7 @@ export default function Header() {
           </div>
         )}
 
-        {/* --- Modules Directory Dropdown --- */}
+        {/* --- Dropdown de Diretório de Módulos --- */}
         {modulesOpen && (
           <div className="absolute top-16 right-0 bg-[#121111]/95 backdrop-blur-md border border-white/10 text-white rounded-2xl p-4 w-[360px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-50 animate-in fade-in slide-in-from-top-4 duration-200">
             <h3 className="text-white/40 text-[10px] font-black uppercase tracking-widest px-2 mb-3">Módulos de Estudo</h3>
@@ -328,11 +328,11 @@ export default function Header() {
         )}
       </div>
 
-      {/* --- Search Modal Overlay --- */}
+      {/* --- Overlay do Modal de Busca --- */}
       {searchOpen && (
         <div className="fixed inset-0 z-50 bg-[#121111]/95 backdrop-blur-lg flex items-start justify-center p-6 pt-24 md:pt-32 transition-all duration-300 animate-in fade-in duration-300">
           <div className="bg-[#1c1a1a] border border-white/10 w-full max-w-2xl rounded-3xl p-6 shadow-2xl relative flex flex-col max-h-[80vh] animate-in zoom-in-95 duration-200">
-            {/* Close button */}
+            {/* Botão de Fechar */}
             <button 
               onClick={() => setSearchOpen(false)}
               className="absolute top-5 right-5 text-white/40 hover:text-white bg-white/5 hover:bg-white/10 p-2 rounded-full transition-colors"
@@ -340,7 +340,7 @@ export default function Header() {
               <X className="size-5" />
             </button>
 
-            {/* Title */}
+            {/* Cabeçalho do Modal */}
             <div className="flex items-center gap-3.5 mb-6 pb-4 border-b border-white/5">
               <SearchIcon className="size-6 text-[#7cb6d3]" />
               <div>
@@ -349,7 +349,7 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Input field */}
+            {/* Campo de Entrada da Busca */}
             <div className="relative mb-6">
               <input 
                 ref={searchInputRef}
@@ -361,7 +361,7 @@ export default function Header() {
               />
             </div>
 
-            {/* Results display */}
+            {/* Exibição de Resultados da Busca */}
             <div className="flex-1 overflow-y-auto pr-1 space-y-3.5 custom-scrollbar min-h-[200px]">
               {searchQuery.trim() === '' ? (
                 <div className="flex flex-col items-center justify-center h-full text-center py-12 text-white/30">

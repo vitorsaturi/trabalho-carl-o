@@ -6,7 +6,7 @@ import UserJourneyAndFlow from './pages/UserJourneyAndFlow';
 import DoubleDiamond from './pages/DoubleDiamond';
 import ProtoPersona from './pages/ProtoPersona';
 
-// Example Pages
+// Páginas de Exemplo
 import IntroductionExample from './pages/examples/IntroductionExample';
 import HeuristicsExample from './pages/examples/HeuristicsExample';
 import JourneyExample from './pages/examples/JourneyExample';

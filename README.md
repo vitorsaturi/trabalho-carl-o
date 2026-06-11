@@ -1,73 +1,33 @@
-# React + TypeScript + Vite
+# UX Academy — Projeto de UI/UX
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto acadêmico desenvolvido para a disciplina de **Experiência do Usuário (UX/UI)**. A aplicação serve como uma plataforma de aprendizado interativa (UX Academy) que consolida os principais conceitos de design centrado no usuário.
 
-Currently, two official plugins are available:
+## Módulos do Curso
+1. **O que é UX / UI** — Introdução aos conceitos e Matriz CSD.
+2. **Heurísticas e Arquitetura** — As 10 Heurísticas de Nielsen, Sitemap e Card Sorting.
+3. **Jornada e Fluxo** — Jornada do Usuário, User Flows e Mapa de Empatia.
+4. **Double Diamond** — Processo estruturado de design (Descobrir, Definir, Desenvolver e Entregar).
+5. **Proto-Persona** — Criação e validação de personas comportamentais.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Funcionalidades Premium
+- **Visual Dark Mode Glassmórfico**: Layout moderno com efeitos de desfoque, gradientes e bordas sutis.
+- **Menu Header Flutuante Interativo**: Barra de navegação responsiva com busca indexada interna de tópicos, rastreador de progresso acadêmico (salvo no `localStorage`) e dropdown rápido de módulos.
+- **Laboratórios Práticos**: Páginas com exemplos interativos ao final de cada módulo (como quadro de post-its CSD funcional, sitemap de níveis expandível e timelines de sentimentos).
 
-## React Compiler
+## Tecnologias Utilizadas
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS (v4)
+- Lucide React (Ícones)
+- React Router (Navegação)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Como Rodar Localmente
+1. Instale as dependências:
+   ```bash
+   npm install
+   ```
+2. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```

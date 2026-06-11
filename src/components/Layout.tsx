@@ -11,7 +11,7 @@ interface LayoutProps {
 export default function Layout({ children, noPadding = false, className = '' }: LayoutProps) {
   const { pathname, hash } = useLocation();
 
-  // Handle scrolling to hashes (for search navigation) or scroll to top on page change
+  // Rola a tela suavemente para âncoras (IDs de busca) ou rola para o topo ao mudar de página
   useEffect(() => {
     if (hash) {
       const id = hash.replace('#', '');
@@ -34,7 +34,7 @@ export default function Layout({ children, noPadding = false, className = '' }: 
         {children}
       </main>
       
-      {/* Global Footer */}
+      {/* Rodapé Global */}
       <footer className="bg-[#121111] text-white/50 pt-24 pb-12 relative overflow-hidden border-t border-white/5">
         <div className="absolute bottom-4 left-6 right-6 select-none pointer-events-none text-center opacity-5 font-display font-black text-[10vw] tracking-tighter text-white leading-none">
           ux academy
